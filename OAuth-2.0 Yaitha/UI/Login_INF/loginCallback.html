@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Facebook Login JavaScript Example</title>
+<meta charset="UTF-8">
+</head>
+<script type="text/javascript">
+    let authorizationCode = null;
+
+    function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, '\\$&');
+        let regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
+
+    window.addEventListener('load', function() {
+
+        if (getParameterByName("code")) {
+            authorizationCode =  getParameterByName("code");
+
+            $.ajax({
+				type: "POST",
+				url: "/service/access-token",
+				data: { 'code': authorizationCode },
+				success: function(data) {
+                    if (data.success) {
+                        window.location.replace("http://localhost:3000/profile");
+                    } else {
+                        alert('Error occurred while obtaining access token');
+                    }
+				},
+				error: function () {
+				}
+			});
+        }
+    })
+
+</script>
+
+<script src="common/jquery/jquery-3.2.1.min.js"></script>
+<body>
+    <div>Please Wait...</div>
+</body>
+</html>
