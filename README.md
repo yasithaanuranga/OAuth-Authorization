@@ -4,13 +4,23 @@
 
 
 
+
 1. Download the project
+
 2. Go to the  downloaded folder and open command promt in it
+
 3. Type following commands and hit enter button:
-    npm install, 
-    npm start App.js
+    
+	npm install, 
+    
+	npm start App.js
+
 4 Open the browser and go to  http://localhost:3000/
+
 5 app will open.
+
+
+
 
 
 
